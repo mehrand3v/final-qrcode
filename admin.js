@@ -36,8 +36,8 @@ const recordForm = document.getElementById("recordForm");
 
 // Admin credentials (in production, this should be handled server-side)
 const CREDENTIALS = {
-  username: "azeem_don",
-  password: "iambondi",
+  username: "admin",
+  password: "Letmein!1"
 };
 
 // Global state
