@@ -42,7 +42,7 @@
 <div class="search-export">
     <input type="text" id="searchInput" placeholder="Search records...">
     <div class="action-buttons">
-        <button class="add-btn" onclick="openAddModal()">Add Record</button>
+        <button class="add-btn" onclick="openAddModal()" style="display:none;">Add Record</button>
         <button class="export-btn" onclick="exportToPDF()">Export to PDF</button>
     </div>
 </div>
@@ -55,7 +55,7 @@
                 <th>Date & Time</th>
                 <th>Full Name</th>
                 <th>Store Number</th>
-                <th>Actions</th>
+                <th style="display:none;">Actions</th>
             </tr>
         </thead>
         <tbody id="recordsTableBody"></tbody>

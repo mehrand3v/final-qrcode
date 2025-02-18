@@ -100,7 +100,31 @@ async function loadRecords() {
     showToast("Error loading records", "error");
   }
 }
-
+// enable it if you need to enable to hide the actions in each row
+// function renderRecords(recordsToRender) {
+//   recordsTableBody.innerHTML = recordsToRender
+//     .map(
+//       (record) => `
+//         <tr>
+//     <td>${
+//       record.signedInAt?.toDate?.().toLocaleString() ||
+//       new Date().toLocaleString()
+//     }</td>
+//     <td>${record.fullName}</td>
+//     <td>${record.storeNumber}</td>
+//     <td class="table-actions">
+//         <button class="edit-btn" onclick="editRecord('${
+//           record.id
+//         }')">Edit</button>
+//         <button class="delete-btn" onclick="deleteRecord('${
+//           record.id
+//         }')">Delete</button>
+//     </td>
+// </tr>
+//     `
+//     )
+//     .join("");
+// }
 function renderRecords(recordsToRender) {
   recordsTableBody.innerHTML = recordsToRender
     .map(
@@ -112,7 +136,7 @@ function renderRecords(recordsToRender) {
     }</td>
     <td>${record.fullName}</td>
     <td>${record.storeNumber}</td>
-    <td class="table-actions">
+    <td class="table-actions" style="display: none;">
         <button class="edit-btn" onclick="editRecord('${
           record.id
         }')">Edit</button>
@@ -125,7 +149,6 @@ function renderRecords(recordsToRender) {
     )
     .join("");
 }
-
 function openAddModal() {
   document.getElementById("modalTitle").textContent = "Add Record";
   recordForm.reset();
