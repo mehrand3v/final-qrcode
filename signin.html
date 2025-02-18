@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link href="https://fonts.cdnfonts.com/css/inter" rel="stylesheet">
+    <link rel="stylesheet" href="./syles.css">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            /* Fix for iOS Safari */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+        }
+
+        /* Ensure the form stays within viewport */
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 420px;
+            max-height: 90vh;
+            padding: 32px;
+            border-radius: 16px;
+            background-color: #1a1a1a;
+            color: #fff;
+            border: 1px solid #333;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scrolling on iOS */
+        }
+
+        /* Rest of your existing styles remain the same */
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 36px;
+            color: #00bfff;
+            margin-bottom: 8px;
+        }
+
+        .title::before,
+        .title::after {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            left: 0px;
+            background-color: #00bfff;
+        }
+
+        .title::after {
+            animation: pulse 1s linear infinite;
+        }
+
+        .message {
+            font-size: 14px;
+            color: #fff;
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            position: relative;
+            width: 100%;
+        }
+
+        .input {
+            background-color: #333;
+            color: #fff;
+            width: 100%;
+            padding: 16px 20px;
+            outline: 0;
+            border: 1px solid rgba(105, 105, 105, 0.397);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .input:focus {
+            border-color: #00bfff;
+            background-color: #333;
+        }
+
+        .input.error {
+            border-color: #ff4444;
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 12px;
+            margin-top: 4px;
+            padding-left: 4px;
+            display: none;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        .terms-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 8px 0;
+            padding: 8px 4px;
+            width: 100%;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .terms-checkbox {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .terms-text {
+            font-size: 14px;
+            color: #fff;
+            opacity: 0.9;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .submit {
+            border: none;
+            outline: none;
+            padding: 16px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #00bfff;
+            cursor: pointer;
+            margin-top: 8px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .submit:hover:not(:disabled) {
+            background-color: #0095cc;
+            transform: translateY(-1px);
+        }
+
+        .submit:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        .submit:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit.loading {
+            color: transparent;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .submit.loading .loading-spinner {
+            display: block;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+
+            .form {
+                padding: 24px;
+                margin: 0;
+                max-height: 85vh;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .form {
+                padding: 20px;
+            }
+
+            .title {
+                font-size: 24px;
+                padding-left: 32px;
+            }
+        }
+
+        /* Fix for iOS viewport height */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                min-height: -webkit-fill-available;
+            }
+        }
+    </style>
+</head>
+
+<!-- Rest of your HTML remains the same -->
+
+<body class="signin-page">
+    <div class="logo-container">
+        <img src="seal.png" alt="SEAL Security Logo">
+    </div>
+    <form class="form" id="registerForm" novalidate>
+        <p class="title">Sign In</p>
+        <p class="message">Please fill in your details to sign in</p>
+
+        <div class="form-group">
+            <input class="input" type="text" id="fullname" name="fullname" placeholder="Enter your full name" required
+                minlength="2" pattern="[A-Za-z\s]+" autocomplete="name">
+            <div class="error-message">Please enter a valid full name (letters and spaces only)</div>
+        </div>
+
+        <div class="form-group">
+            <input class="input" type="text" id="storenumber" name="storenumber" placeholder="Enter your store number"
+                required minlength="2" pattern="[A-Za-z0-9]+" autocomplete="off">
+            <div class="error-message">Please enter a valid store number (letters and numbers only)</div>
+        </div>
+
+        <div class="terms-container">
+            <div class="checkbox-wrapper">
+                <input type="checkbox" id="terms" class="terms-checkbox" required>
+                <label for="terms" class="terms-text">
+                    I confirm that the information provided is accurate
+                </label>
+            </div>
+        </div>
+
+        <button class="submit" type="submit" disabled>
+            Sign In
+            <div class="loading-spinner"></div>
+        </button>
+    </form>
+
+    <script type="module" src="firebase.config.js"></script>
+    <script type="module" src="signin.js"></script>
+</body>
+
+</html>

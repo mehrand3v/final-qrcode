@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnjs.cloudflare.com/ajax/libs/inter/3.19.3/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="./syles.css">
+    <title>Sign In Successful</title>
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 20px;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .success-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border: 1px solid #333;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .success-icon {
+            color: #4BB543;
+            font-size: 72px;
+            margin-bottom: 24px;
+            animation: scaleIn 0.5s ease-out;
+            line-height: 1;
+        }
+
+        .success-message {
+            font-size: 32px;
+            color: #4BB543;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .success-text {
+            color: #fff;
+            opacity: 0.9;
+            margin-bottom: 24px;
+            line-height: 1.6;
+            font-size: 16px;
+            max-width: 320px;
+        }
+
+        .redirect-message {
+            font-size: 15px;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+
+        .countdown {
+            color: #00bfff;
+            font-weight: 600;
+            font-size: 16px;
+            min-width: 16px;
+            display: inline-block;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #888;
+            border-top-color: #00bfff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 4px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .success-container {
+                padding: 24px;
+                max-width: 90%;
+                margin: 16px;
+            }
+
+            .success-icon {
+                font-size: 56px;
+                margin-bottom: 20px;
+            }
+
+            .success-message {
+                font-size: 24px;
+                margin-bottom: 12px;
+            }
+
+            .success-text {
+                font-size: 14px;
+                margin-bottom: 20px;
+                padding: 0 10px;
+            }
+
+            .redirect-message {
+                font-size: 14px;
+                gap: 6px;
+            }
+
+            .countdown {
+                font-size: 14px;
+            }
+
+            .spinner {
+                width: 14px;
+                height: 14px;
+                border-width: 2px;
+                margin-left: 2px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .success-container {
+                padding: 20px;
+            }
+
+            .success-icon {
+                font-size: 48px;
+            }
+
+            .success-message {
+                font-size: 22px;
+            }
+
+            .redirect-message {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body class="success-page">
+    <div class="logo-container">
+        <img src="seal.png" alt="SEAL Security Logo">
+    </div>
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        <div class="success-message">Sign In Successful!</div>
+        <p class="success-text">Thank you for signing in.</p>
+        <div class="redirect-message">
+            Redirecting to sign in page in <span class="countdown">5</span> seconds
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <script>
+        let countdown = 5;
+        const countdownElement = document.querySelector('.countdown');
+
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

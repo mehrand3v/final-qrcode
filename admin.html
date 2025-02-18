@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnjs.cloudflare.com/ajax/libs/inter/3.19.3/inter.css" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="./syles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script type="module" src="./admin.js"></script>
+    <title>Admin Dashboard</title>
+
+</head>
+
+<body>
+    <div class="logo-container">
+        <img src="seal.png" alt="SEAL Security Logo">
+    </div>
+    <!-- Login Form -->
+<div id="loginContainer">
+    <h2 style="margin-bottom: 20px;">Admin Login</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" >
+        <input type="password" id="password" placeholder="Password" >
+        <button type="submit">Login</button>
+        <div id="loginError"></div>
+    </form>
+</div>
+
+    <!-- Dashboard -->
+    <div id="dashboardContainer" class="hidden">
+        <div class="dashboard-header">
+            <h2>Admin Dashboard</h2>
+
+            <button id="logoutBtn" class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+
+
+<div class="search-export">
+    <input type="text" id="searchInput" placeholder="Search records...">
+    <div class="action-buttons">
+        <button class="add-btn" onclick="openAddModal()">Add Record</button>
+        <button class="export-btn" onclick="exportToPDF()">Export to PDF</button>
+    </div>
+</div>
+
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Date & Time</th>
+                <th>Full Name</th>
+                <th>Store Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="recordsTableBody"></tbody>
+    </table>
+</div>
+
+
+        <div class="qr-control-panel">
+            <h3>QR Code Management</h3>
+            <div class="qr-container">
+                <div>
+                    <div id="qrcode" class="qr-display"></div>
+                    <div id="currentUrl" class="url-display"></div>
+                </div>
+                <div>
+<div class="action-buttons">
+    <button onclick="regenerateQR()" class="regenerate-btn">Generate QR</button>
+</div>
+                    
+                    <p id="lastUpdated" class="timestamp-display"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div id="recordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add Record</h3>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="recordForm">
+                <input type="hidden" id="recordId">
+                <input type="text" id="fullName" placeholder="Full Name">
+                <input type="text" id="storeNumber" placeholder="Store Number" >
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
