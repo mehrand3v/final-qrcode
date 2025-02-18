@@ -18,7 +18,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-top:60px;
+            margin-top: 60px;
         }
 
         #loginContainer {
@@ -180,7 +180,8 @@
         .toast-error {
             background: #dc3545;
         }
- #loginError {
+
+        #loginError {
             color: #dc3545;
             background-color: #f8d7da;
             border: 1px solid #f5c6cb;
@@ -192,7 +193,9 @@
 
         #loginError.show {
             display: block;
-        } .qr-control-panel {
+        }
+
+        .qr-control-panel {
             margin-top: 20px;
             background: white;
             padding: 20px;
@@ -228,79 +231,81 @@
             color: #666;
             margin-top: 5px;
         }
-                /* Logo positioning and responsive adjustments */
-                .logo-container {
-                    text-align: center;
-                    margin-bottom: 20px;
-                }
 
-                /* .logo-container img {
+        /* Logo positioning and responsive adjustments */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* .logo-container img {
                     max-width: 150px;
                     height: auto;
                 } */
 
-                /* Responsive table improvements */
-                @media (max-width: 768px) {
-                    .table-container {
-                        overflow-x: auto;
-                        -webkit-overflow-scrolling: touch;
-                    }
+        /* Responsive table improvements */
+        @media (max-width: 768px) {
+            .table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
 
-                    table {
-                        min-width: 600px;
-                        /* Ensures table maintains minimum width on small screens */
-                    }
+            table {
+                min-width: 600px;
+                /* Ensures table maintains minimum width on small screens */
+            }
 
-                                        .search-export {
-                                            flex-direction: row !important;
-                                            flex-wrap: wrap;
-                                            gap: 10px;
-                                            justify-content: space-between;
-                                        }
+            .search-export {
+                flex-direction: row !important;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: space-between;
+            }
 
-                                        .action-buttons {
-                                            display: flex;
-                                            flex-direction: row !important;
-                                            gap: 10px;
-                                        }
+            .action-buttons {
+                display: flex;
+                flex-direction: row !important;
+                gap: 10px;
+            }
 
-                                        .add-btn,
-                                        .export-btn {
-                                            padding: 8px 16px !important;
-                                            font-size: 14px !important;
-                                            white-space: nowrap;
-                                        }
+            .add-btn,
+            .export-btn {
+                padding: 8px 16px !important;
+                font-size: 14px !important;
+                white-space: nowrap;
+            }
 
-                                        #searchInput {
-                                            width: 100%;
-                                            margin-bottom: 10px;
-                                        }
-                }
+            #searchInput {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
 
-                /* Distinct button colors */
-                .add-btn {
-                    background: #28a745 !important;
-                }
+        /* Distinct button colors */
+        .add-btn {
+            background: #28a745 !important;
+        }
 
-                .export-btn {
-                    background: #6610f2 !important;
-                }
+        .export-btn {
+            background: #6610f2 !important;
+        }
 
-                .edit-btn {
-                    background: #17a2b8 !important;
-                }
+        .edit-btn {
+            background: #17a2b8 !important;
+        }
 
-                .delete-btn {
-                    background: #dc3545 !important;
-                }
+        .delete-btn {
+            background: #dc3545 !important;
+        }
 
-                .regenerate-btn {
-                    background: #fd7e14 !important;
-                }
+        .regenerate-btn {
+            background: #fd7e14 !important;
+        }
 
-                .logout-btn {
-                    background: #6c757d !important;
-                }
+        .logout-btn {
+            background: #6c757d !important;
+        }
+
         @media (max-width: 768px) {
             .search-export {
                 flex-direction: column;
@@ -311,23 +316,104 @@
                 overflow-x: auto;
             }
         }
-                @media (max-width: 480px) {
-                    .logo-container {
-                        top: 10px;
-                    }
 
-                    .logo-container img {
-                        max-width: 120px;
-                    }
+        @media (max-width: 480px) {
+            .logo-container {
+                top: 10px;
+            }
 
-                    body {
-                        padding-top: 80px !important;
-                    }
-                }
-                                body.signin-page,
-                                body.index-page {
-                                    display: flex;
-                                    flex-direction: column;
-                                    min-height: 100vh;
-                                    padding-top: 100px !important;
-                                }
+            .logo-container img {
+                max-width: 120px;
+            }
+
+            body {
+                padding-top: 80px !important;
+            }
+        }
+
+        body.signin-page,
+        body.index-page {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 100px !important;
+        }
+
+                  /* Print-specific styles */
+                                  .print-heading {
+                                      display: none;
+                                      /* Hide by default */
+                                  }
+                                  @media print {
+
+                                      /* Hide everything initially */
+                                      body * {
+                                          visibility: hidden;
+                                          margin: 0;
+                                          padding: 0;
+                                      }
+
+                                      /* Show and style the print wrapper */
+                                      .print-wrapper {
+                                          visibility: visible;
+                                          position: fixed;
+                                          left: 50%;
+                                          top: 50%;
+                                          transform: translate(-50%, -50%);
+                                          padding: 40px;
+                                          border: 2px solid #000;
+                                          border-radius: 12px;
+                                          background: white;
+                                          text-align: center;
+                                      }
+
+                                      /* Show the heading during printing */
+                                      .print-heading {
+                                          display: block;
+                                          visibility: visible;
+                                          font-family: 'Inter', sans-serif;
+                                          font-size: 24px;
+                                          margin-bottom: 30px;
+                                          color: #000;
+                                          text-align: center;
+                                      }
+
+                                      /* Show and center the QR code */
+                                      #qrcode canvas,
+                                      #qrcode img {
+                                          visibility: visible;
+                                          display: block;
+                                          margin: 0 auto;
+                                          width: 300px;
+                                          /* Adjust the width to make the QR code bigger */
+                                          height: 300px;
+                                          /* Adjust the height to make the QR code bigger */
+                                      }
+
+                                      /* Remove original styling but keep elements for structure */
+                                      .qr-display {
+                                          background: none !important;
+                                          padding: 0 !important;
+                                          margin: 0 !important;
+                                          box-shadow: none !important;
+                                      }
+
+                                      .qr-control-panel {
+                                          background: none !important;
+                                          border: none !important;
+                                          box-shadow: none !important;
+                                      }
+
+                                      /* Hide unnecessary elements */
+                                      .url-display,
+                                      .action-buttons,
+                                      .timestamp-display {
+                                          display: none !important;
+                                      }
+
+                                      /* Page settings */
+                                      @page {
+                                          margin: 0;
+                                          size: auto;
+                                      }
+                                  }

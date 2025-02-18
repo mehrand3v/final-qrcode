@@ -66,19 +66,21 @@
         <div class="qr-control-panel">
             <h3>QR Code Management</h3>
             <div class="qr-container">
-                <div>
+                <div class="print-wrapper">
+                    <h2 class="print-heading">Please Scan to Sign In</h2>
                     <div id="qrcode" class="qr-display"></div>
                     <div id="currentUrl" class="url-display"></div>
                 </div>
                 <div>
-<div class="action-buttons">
-    <button onclick="regenerateQR()" class="regenerate-btn">Generate QR</button>
-</div>
-                    
+                    <div class="action-buttons">
+                        <button onclick="regenerateQR()" class="regenerate-btn">Generate QR</button>
+                        <button onclick="printQR()" class="print-btn">Print QR</button>
+                    </div>
                     <p id="lastUpdated" class="timestamp-display"></p>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- Add/Edit Modal -->

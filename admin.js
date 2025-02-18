@@ -36,7 +36,7 @@ const recordForm = document.getElementById("recordForm");
 
 // Admin credentials (in production, this should be handled server-side)
 const CREDENTIALS = {
-  username: "admin",
+  username: "Admin",
   password: "Letmein!1"
 };
 
@@ -312,7 +312,13 @@ document.addEventListener("DOMContentLoaded", () => {
      initQRCode();
    }
 });
+/* Add to admin.js */
+        function printQR() {
+            window.print();
+        }
 
+        // Add to window exports
+        window.printQR=printQR;
 // Export functions for global access
 window.regenerateQR = regenerateQR;
 window.openAddModal = openAddModal;
