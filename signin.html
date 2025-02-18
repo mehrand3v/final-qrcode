@@ -289,9 +289,12 @@
         </div>
 
         <div class="form-group">
-            <input class="input" type="text" id="storenumber" name="storenumber" placeholder="Enter your store number"
+            <!-- <input class="input" type="text" id="storenumber" name="storenumber" placeholder="Enter your store number"
                 required minlength="2" pattern="[A-Za-z0-9]+" autocomplete="off" inputmode="numeric">
-            <div class="error-message">Please enter a valid store number </div>
+            <div class="error-message">Please enter a valid store number </div> -->
+            <input class="input" type="text" id="storenumber" name="storenumber" placeholder="274" required minlength="5"
+                pattern="274[0-9]+" autocomplete="off">
+            <div class="error-message">Store number must start with 274 followed by numbers only</div>
         </div>
 
         <div class="terms-container">
