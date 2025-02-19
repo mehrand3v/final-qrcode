@@ -75,7 +75,7 @@ function showDashboard() {
 
   // Show the "Delete All" button only for Admin2
   const adminType = sessionStorage.getItem("adminType");
-  if (adminType === "Admin2") {
+  if (adminType === "Don") {
     document.getElementById("deleteAllBtn").style.display = "block";
   }
 }
