@@ -37,7 +37,9 @@ const recordForm = document.getElementById("recordForm");
 // Admin credentials (in production, this should be handled server-side)
 const CREDENTIALS = {
   username: "Admin",
-  password: "Letmein!1"
+  password: "Letmein!1",
+  username2: "Don", // New admin
+  password2: "iamhindu", // New admin password
 };
 
 // Global state
@@ -70,6 +72,12 @@ function showDashboard() {
   loginContainer.classList.add("hidden");
   dashboardContainer.classList.remove("hidden");
   loadRecords();
+
+  // Show the "Delete All" button only for Admin2
+  const adminType = sessionStorage.getItem("adminType");
+  if (adminType === "Admin2") {
+    document.getElementById("deleteAllBtn").style.display = "block";
+  }
 }
 
 function checkLoginStatus() {
@@ -264,35 +272,35 @@ async function initQRCode() {
 }
 
 function updateUrlDisplay(url) {
-    const urlDisplay = document.getElementById("currentUrl");
-    if (urlDisplay) {
-        urlDisplay.textContent = `Active URL: ${url}`;
-    }
+  const urlDisplay = document.getElementById("currentUrl");
+  if (urlDisplay) {
+    urlDisplay.textContent = `Active URL: ${url}`;
+  }
 }
 
 function updateLastUpdated(timestamp) {
-    const lastUpdated = document.getElementById("lastUpdated");
-    if (lastUpdated && timestamp) {
-        const date = timestamp.toDate();
-        lastUpdated.textContent = `Last updated: ${date.toLocaleString()}`;
-    }
+  const lastUpdated = document.getElementById("lastUpdated");
+  if (lastUpdated && timestamp) {
+    const date = timestamp.toDate();
+    lastUpdated.textContent = `Last updated: ${date.toLocaleString()}`;
+  }
 }
 
 async function regenerateQR() {
-    try {
-        const timestamp = new Date().toISOString();
-        const result = await updateActiveQRUrl(timestamp);
+  try {
+    const timestamp = new Date().toISOString();
+    const result = await updateActiveQRUrl(timestamp);
 
-        if (result.success) {
-            await initQRCode();
-            showToast("QR Code updated successfully");
-        } else {
-            throw new Error("Failed to update QR Code");
-        }
-    } catch (error) {
-        console.error("Error regenerating QR code:", error);
-        showToast("Failed to update QR Code", "error");
+    if (result.success) {
+      await initQRCode();
+      showToast("QR Code updated successfully");
+    } else {
+      throw new Error("Failed to update QR Code");
     }
+  } catch (error) {
+    console.error("Error regenerating QR code:", error);
+    showToast("Failed to update QR Code", "error");
+  }
 }
 // Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
@@ -309,10 +317,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (
-      username === CREDENTIALS.username &&
-      password === CREDENTIALS.password
+      (username === CREDENTIALS.username &&
+        password === CREDENTIALS.password) ||
+      (username === CREDENTIALS.username2 && password === CREDENTIALS.password2)
     ) {
       sessionStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("adminType", username); // Store the admin type
       showDashboard();
     } else {
       showError("Invalid username or password");
@@ -331,17 +341,48 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     renderRecords(filteredRecords);
   });
-   if (sessionStorage.getItem("isLoggedIn") === "true") {
-     initQRCode();
-   }
+  if (sessionStorage.getItem("isLoggedIn") === "true") {
+    initQRCode();
+  }
 });
-/* Add to admin.js */
-        function printQR() {
-            window.print();
-        }
 
-        // Add to window exports
-        window.printQR=printQR;
+// async function deleteAllRecords() {
+//   try {
+//    const querySnapshot = await getDocs(collection(db, "signin-records"));
+//     querySnapshot.forEach(async (doc) => {
+//       await deleteDoc(doc.ref);
+//     });
+//     showToast("All records deleted successfully");
+//     await loadRecords();
+//   } catch (error) {
+//     console.error("Error deleting all records:", error);
+//     showToast("Error deleting all records", "error");
+//   }
+// }
+async function deleteAllRecords() {
+  try {
+    console.log("Deleting all records...");
+    const querySnapshot = await getDocs(collection(db, "signin-records"));
+    console.log("Records fetched:", querySnapshot.size);
+    querySnapshot.forEach(async (doc) => {
+      console.log("Deleting record:", doc.id);
+      await deleteDoc(doc.ref);
+    });
+    showToast("All records deleted successfully");
+    await loadRecords();
+  } catch (error) {
+    console.error("Error deleting all records:", error);
+    showToast("Error deleting all records", "error");
+  }
+}
+
+/* Add to admin.js */
+function printQR() {
+  window.print();
+}
+window.deleteAllRecords = deleteAllRecords;
+// Add to window exports
+window.printQR = printQR;
 // Export functions for global access
 window.regenerateQR = regenerateQR;
 window.openAddModal = openAddModal;

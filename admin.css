@@ -339,81 +339,86 @@
             padding-top: 100px !important;
         }
 
-                  /* Print-specific styles */
-                                  .print-heading {
-                                      display: none;
-                                      /* Hide by default */
-                                  }
-                                  @media print {
+        /* Print-specific styles */
+        .print-heading {
+            display: none;
+            /* Hide by default */
+        }
 
-                                      /* Hide everything initially */
-                                      body * {
-                                          visibility: hidden;
-                                          margin: 0;
-                                          padding: 0;
-                                      }
+        @media print {
 
-                                      /* Show and style the print wrapper */
-                                      .print-wrapper {
-                                          visibility: visible;
-                                          position: fixed;
-                                          left: 50%;
-                                          top: 50%;
-                                          transform: translate(-50%, -50%);
-                                          padding: 40px;
-                                          border: 2px solid #000;
-                                          border-radius: 12px;
-                                          background: white;
-                                          text-align: center;
-                                      }
+            /* Hide everything initially */
+            body * {
+                visibility: hidden;
+                margin: 0;
+                padding: 0;
+            }
 
-                                      /* Show the heading during printing */
-                                      .print-heading {
-                                          display: block;
-                                          visibility: visible;
-                                          font-family: 'Inter', sans-serif;
-                                          font-size: 24px;
-                                          margin-bottom: 30px;
-                                          color: #000;
-                                          text-align: center;
-                                      }
+            /* Show and style the print wrapper */
+            .print-wrapper {
+                visibility: visible;
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                padding: 40px;
+                border: 2px solid #000;
+                border-radius: 12px;
+                background: white;
+                text-align: center;
+            }
 
-                                      /* Show and center the QR code */
-                                      #qrcode canvas,
-                                      #qrcode img {
-                                          visibility: visible;
-                                          display: block;
-                                          margin: 0 auto;
-                                          width: 300px;
-                                          /* Adjust the width to make the QR code bigger */
-                                          height: 300px;
-                                          /* Adjust the height to make the QR code bigger */
-                                      }
+            /* Show the heading during printing */
+            .print-heading {
+                display: block;
+                visibility: visible;
+                font-family: 'Inter', sans-serif;
+                font-size: 24px;
+                margin-bottom: 30px;
+                color: #000;
+                text-align: center;
+            }
 
-                                      /* Remove original styling but keep elements for structure */
-                                      .qr-display {
-                                          background: none !important;
-                                          padding: 0 !important;
-                                          margin: 0 !important;
-                                          box-shadow: none !important;
-                                      }
+            /* Show and center the QR code */
+            #qrcode canvas,
+            #qrcode img {
+                visibility: visible;
+                display: block;
+                margin: 0 auto;
+                width: 300px;
+                /* Adjust the width to make the QR code bigger */
+                height: 300px;
+                /* Adjust the height to make the QR code bigger */
+            }
 
-                                      .qr-control-panel {
-                                          background: none !important;
-                                          border: none !important;
-                                          box-shadow: none !important;
-                                      }
+            /* Remove original styling but keep elements for structure */
+            .qr-display {
+                background: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+            }
 
-                                      /* Hide unnecessary elements */
-                                      .url-display,
-                                      .action-buttons,
-                                      .timestamp-display {
-                                          display: none !important;
-                                      }
+            .qr-control-panel {
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
 
-                                      /* Page settings */
-                                      @page {
-                                          margin: 0;
-                                          size: auto;
-                                      }
-                                  }
+            /* Hide unnecessary elements */
+            .url-display,
+            .action-buttons,
+            .timestamp-display {
+                display: none !important;
+            }
+
+            /* Page settings */
+            @page {
+                margin: 0;
+                size: auto;
+            }
+        }
+
+        .delete-all-btn {
+            background: #dc3545 !important;
+        }

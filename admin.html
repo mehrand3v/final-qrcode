@@ -20,15 +20,15 @@
         <img src="seal.png" alt="SEAL Security Logo">
     </div>
     <!-- Login Form -->
-<div id="loginContainer">
-    <h2 style="margin-bottom: 20px;">Admin Login</h2>
-    <form id="loginForm">
-        <input type="text" id="username" placeholder="Username" >
-        <input type="password" id="password" placeholder="Password" >
-        <button type="submit">Login</button>
-        <div id="loginError"></div>
-    </form>
-</div>
+    <div id="loginContainer">
+        <h2 style="margin-bottom: 20px;">Admin Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button type="submit">Login</button>
+            <div id="loginError"></div>
+        </form>
+    </div>
 
     <!-- Dashboard -->
     <div id="dashboardContainer" class="hidden">
@@ -39,28 +39,31 @@
         </div>
 
 
-<div class="search-export">
-    <input type="text" id="searchInput" placeholder="Search records...">
-    <div class="action-buttons">
-        <button class="add-btn" onclick="openAddModal()" style="display:none;">Add Record</button>
-        <button class="export-btn" onclick="exportToPDF()">Export to PDF</button>
-    </div>
-</div>
+        <div class="search-export">
+            <input type="text" id="searchInput" placeholder="Search records...">
+            <div class="action-buttons">
+                <button class="add-btn" onclick="openAddModal()" style="display:none;">Add Record</button>
+                <button class="export-btn" onclick="exportToPDF()">Export to PDF</button>
+                <button id="deleteAllBtn" class="delete-all-btn" onclick="deleteAllRecords()"
+                    style="display:none;">Delete All
+                    Records</button>
+            </div>
+        </div>
 
 
-<div class="table-container">
-    <table>
-        <thead>
-            <tr>
-                <th>Date & Time</th>
-                <th>Full Name</th>
-                <th>Store Number</th>
-                <th style="display:none;">Actions</th>
-            </tr>
-        </thead>
-        <tbody id="recordsTableBody"></tbody>
-    </table>
-</div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Full Name</th>
+                        <th>Store Number</th>
+                        <th style="display:none;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="recordsTableBody"></tbody>
+            </table>
+        </div>
 
 
         <div class="qr-control-panel">
@@ -93,7 +96,7 @@
             <form id="recordForm">
                 <input type="hidden" id="recordId">
                 <input type="text" id="fullName" placeholder="Full Name">
-                <input type="text" id="storeNumber" placeholder="Store Number" >
+                <input type="text" id="storeNumber" placeholder="Store Number">
                 <button type="submit">Save</button>
             </form>
         </div>
