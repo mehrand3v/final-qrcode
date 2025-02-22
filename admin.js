@@ -44,7 +44,14 @@ const CREDENTIALS = {
 
 // Global state
 let records = [];
-
+function toggleLoader(show = true) {
+    const loader = document.getElementById('loaderContainer');
+    if (show) {
+        loader.classList.remove('loader-hidden');
+    } else {
+        loader.classList.add('loader-hidden');
+    }
+}
 // Toast notification function
 function showToast(message, type = "success") {
   const toast = document.createElement("div");
@@ -69,9 +76,12 @@ function showError(message) {
 }
 
 function showDashboard() {
+  toggleLoader(true); // Show loader
   loginContainer.classList.add("hidden");
   dashboardContainer.classList.remove("hidden");
-  loadRecords();
+  loadRecords().then(() => {
+    toggleLoader(false); // Hide loader after everything is loaded
+  });
 
   // Show the "Delete All" button only for Admin2
   const adminType = sessionStorage.getItem("adminType");
@@ -94,6 +104,7 @@ function logout() {
 
 // Record management functions
 async function loadRecords() {
+  toggleLoader(true); // Show loader
   try {
     const querySnapshot = await getDocs(
       query(collection(db, "signin-records"), orderBy("signedInAt", "desc"))
@@ -106,6 +117,8 @@ async function loadRecords() {
   } catch (error) {
     console.error("Error loading records:", error);
     showToast("Error loading records", "error");
+  } finally {
+    toggleLoader(false); // Hide loader
   }
 }
 // enable it if you need to enable to hide the actions in each row
